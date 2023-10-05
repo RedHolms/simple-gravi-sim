@@ -76,7 +76,11 @@ public:
         frames_drawen = 0;
       }
 
-      tick();
+      uint32_t ticks = ticker.tick();
+      for (uint32_t i = 0; i < ticks; ++i) {
+        tick();
+      }
+
       render();
 
       glfwPollEvents();
