@@ -9,7 +9,7 @@ Planet::Planet(Vector2 position, double mass, double radius, uint32_t color) {
 }
 
 void Planet::tick() {
-  move( (velocity / mass) );
+  move(velocity / mass);
 }
 
 void Planet::punch(Vector2 value) {

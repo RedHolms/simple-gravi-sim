@@ -3,23 +3,23 @@
 #include <math.h>
 
 struct Vector2 {
-  double x, y;
+  float x, y;
 
   constexpr Vector2()
     : x(0), y(0) {}
 
-  explicit constexpr Vector2(double v)
+  explicit constexpr Vector2(float v)
     : x(v), y(v) {}
 
-  constexpr Vector2(double x, double y)
+  constexpr Vector2(float x, float y)
     : x(x), y(y) {}
 
-  inline double length() const noexcept {
-    return sqrt( (x * x) + (y * y) );
+  inline float length() const noexcept {
+    return sqrtf( (x * x) + (y * y) );
   }
 
   inline Vector2 normalize() const noexcept {
-    double l = length();
+    float l = length();
     return Vector2( x / l, y / l );
   }
 
@@ -41,25 +41,31 @@ struct Vector2 {
     return Vector2( x - v.x, y - v.y );
   }
 
-  constexpr Vector2 operator*=(double scaler) noexcept {
+  constexpr Vector2 operator*=(float scaler) noexcept {
     x *= scaler; y *= scaler;
     return *this;
   }
 
-  constexpr Vector2 operator*(double scaler) const noexcept {
+  constexpr Vector2 operator*(float scaler) const noexcept {
     return Vector2( x * scaler, y * scaler );
   }
 
-  constexpr Vector2 operator/=(double scaler) noexcept {
+  constexpr Vector2 operator/=(float scaler) noexcept {
     x /= scaler; y /= scaler;
     return *this;
   }
 
-  constexpr Vector2 operator/(double scaler) const noexcept {
+  constexpr Vector2 operator/(float scaler) const noexcept {
     return Vector2( x / scaler, y / scaler );
   }
 
   constexpr Vector2 operator-() const noexcept {
     return Vector2( -x, -y );
+  }
+
+  constexpr bool operator==(Vector2 const& other) const noexcept {
+    return
+      x == other.x &&
+      y == other.y;
   }
 };
